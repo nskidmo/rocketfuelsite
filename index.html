@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Fuel @ Sam's Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sams: {
+                            blue: '#0060A9',
+                            'blue-dark': '#004C91',
+                            'blue-darker': '#003366',
+                            green: '#78BE20',
+                            'green-dark': '#5A8F18',
+                            gray: {
+                                50: '#F7F7F7',
+                                100: '#EBEBEB',
+                                200: '#D6D6D6',
+                                300: '#B8B8B8',
+                                600: '#666666',
+                                800: '#333333',
+                                900: '#1A1A1A',
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        [id] { scroll-margin-top: 5rem; }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 1rem;
+            z-index: 100;
+            background: #003366;
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0.75rem;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #78BE20;
+            outline-offset: 2px;
+            border-radius: 0.25rem;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #003366 0%, #0060A9 40%, #004C91 70%, #001f3f 100%);
+        }
+        .rocket-glow {
+            text-shadow: 0 0 40px rgba(120, 190, 32, 0.4), 0 0 80px rgba(0, 96, 169, 0.3);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 96, 169, 0.15);
+        }
+        .section-fade {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(120, 190, 32, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(120, 190, 32, 0.6); }
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-sams-gray-800 font-sans">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="bg-sams-blue-darker sticky top-0 z-50 shadow-lg" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <img src="SC_Logo_Symbol_2384C_RGB.png" alt="Sam's Club logo" class="h-10 w-10 object-contain bg-white rounded p-1">
+                    <span class="text-white font-bold text-lg tracking-wide">Rocket Fuel @ Sam's Club</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#about" class="text-white/80 hover:text-white transition-colors text-sm font-medium">About</a>
+                    <a href="#format" class="text-white/80 hover:text-white transition-colors text-sm font-medium">Format</a>
+                    <a href="#schedule" class="text-white/80 hover:text-white transition-colors text-sm font-medium">Schedule</a>
+                    <a href="#capstone" class="text-white/80 hover:text-white transition-colors text-sm font-medium">Capstone</a>
+                    <a href="#class" class="text-white/80 hover:text-white transition-colors text-sm font-medium">Class of 2026</a>
+                </div>
+            </div>
+            <div class="md:hidden pb-3 flex items-center gap-4 overflow-x-auto whitespace-nowrap" aria-label="Mobile section links">
+                <a href="#about" class="text-white/85 hover:text-white transition-colors text-sm font-medium">About</a>
+                <a href="#format" class="text-white/85 hover:text-white transition-colors text-sm font-medium">Format</a>
+                <a href="#schedule" class="text-white/85 hover:text-white transition-colors text-sm font-medium">Schedule</a>
+                <a href="#capstone" class="text-white/85 hover:text-white transition-colors text-sm font-medium">Capstone</a>
+                <a href="#class" class="text-white/85 hover:text-white transition-colors text-sm font-medium">Class of 2026</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+    <!-- Hero Section -->
+    <header class="hero-gradient relative overflow-hidden min-h-[70vh] flex items-center">
+        <!-- Animated stars/particles -->
+        <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute w-2 h-2 bg-white/20 rounded-full top-[10%] left-[15%] float-animation" style="animation-delay: 0s;"></div>
+            <div class="absolute w-1 h-1 bg-white/30 rounded-full top-[20%] left-[45%] float-animation" style="animation-delay: 0.5s;"></div>
+            <div class="absolute w-2 h-2 bg-white/15 rounded-full top-[60%] left-[70%] float-animation" style="animation-delay: 1s;"></div>
+            <div class="absolute w-1 h-1 bg-white/25 rounded-full top-[40%] left-[85%] float-animation" style="animation-delay: 1.5s;"></div>
+            <div class="absolute w-3 h-3 bg-white/10 rounded-full top-[75%] left-[25%] float-animation" style="animation-delay: 2s;"></div>
+            <div class="absolute w-1 h-1 bg-sams-green/20 rounded-full top-[30%] left-[60%] float-animation" style="animation-delay: 0.7s;"></div>
+            <div class="absolute w-2 h-2 bg-sams-green/15 rounded-full top-[50%] left-[10%] float-animation" style="animation-delay: 1.3s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                    <span class="w-2 h-2 bg-sams-green rounded-full pulse-glow"></span>
+                    <span class="text-white/90 text-sm font-medium">Spring 2026 Cohort</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 rocket-glow leading-tight">
+                    Rocket Fuel<br>
+                    <span class="text-sams-green">@ Sam's Club</span>
+                </h1>
+                <p class="text-xl text-white/80 max-w-2xl leading-relaxed">
+                    A high-impact development experience for high-potential leaders
+                    within the Marketing Practice.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#about" class="inline-flex items-center gap-2 bg-sams-green hover:bg-sams-green-dark text-white font-semibold px-6 py-3 rounded-lg transition-colors shadow-lg">
+                        Learn More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </a>
+                    <a href="#schedule" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-lg transition-colors border border-white/20">
+                        View Schedule
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative rocket emoji -->
+        <div class="absolute right-10 bottom-10 md:right-20 md:bottom-20 text-8xl md:text-9xl float-animation opacity-30" aria-hidden="true">
+            🚀
+        </div>
+    </header>
+
+    <!-- What is Rocket Fuel? -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-1 h-12 bg-sams-green rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-sams-blue-darker">What is Rocket Fuel?</h2>
+                </div>
+
+                <div class="space-y-6 text-lg leading-relaxed text-sams-gray-600">
+                    <p>
+                        <strong class="text-sams-blue">Rocket Fuel @ Sam's Club</strong> is a high-impact development
+                        experience for high-potential Managers and Senior Managers within the Marketing Practice.
+                    </p>
+                    <p>
+                        The program serves as both a <strong class="text-sams-blue-dark">recognition and acceleration mechanism</strong>
+                        for Marketing team members — helping to build the next generation of leaders who drive member-led
+                        growth, collaboration, and creativity across the organization.
+                    </p>
+
+                    <div class="bg-sams-blue/5 border-l-4 border-sams-blue rounded-r-lg p-6 my-8">
+                        <p class="text-sams-blue-dark font-medium italic">
+                            "Your nomination reflects confidence in your leadership potential and your ability to shape
+                            the future of Sam's Club Marketing. Rocket Fuel is a signal of investment, readiness, and potential."
+                        </p>
+                    </div>
+
+                    <p>
+                        The program is designed to accelerate leadership readiness, deepen enterprise understanding,
+                        and strengthen cross-functional trust — all in direct alignment with ambitions set-out in our
+                        Marketing Evolution, Sam's Club values, and feedback from AES.
+                    </p>
+                </div>
+
+                <!-- AES Alignment Cards -->
+                <div class="grid md:grid-cols-3 gap-6 mt-10">
+                    <div class="card-hover bg-sams-gray-50 rounded-xl p-6 border border-sams-gray-100">
+                        <div class="w-12 h-12 bg-sams-blue/10 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-sams-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-sams-blue-darker mb-2">Career Growth</h3>
+                        <p class="text-sm text-sams-gray-600">Clearer career growth and development pathways for high-potential leaders.</p>
+                    </div>
+                    <div class="card-hover bg-sams-gray-50 rounded-xl p-6 border border-sams-gray-100">
+                        <div class="w-12 h-12 bg-sams-green/10 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-sams-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-sams-blue-darker mb-2">Cross-Team Connection</h3>
+                        <p class="text-sm text-sams-gray-600">Stronger cross-team connection and collaboration across the organization.</p>
+                    </div>
+                    <div class="card-hover bg-sams-gray-50 rounded-xl p-6 border border-sams-gray-100">
+                        <div class="w-12 h-12 bg-sams-blue/10 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-sams-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-sams-blue-darker mb-2">Trust & Safety</h3>
+                        <p class="text-sm text-sams-gray-600">Build trust, psychological safety, and recognition within teams.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Format -->
+    <section id="format" class="py-20 bg-sams-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-1 h-12 bg-sams-blue rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-sams-blue-darker">Program Format</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Left: Description -->
+                    <div class="space-y-6 text-lg leading-relaxed text-sams-gray-600">
+                        <p>
+                            Our <strong class="text-sams-blue">Spring 2026</strong> Rocket Fuel @ Sam's Club program
+                            will be held over a <strong class="text-sams-blue-dark">three-day in-person workshop</strong>,
+                            focusing on <strong>12 leadership themes</strong>.
+                        </p>
+                        <p>
+                            In preparation, participants will read, watch, and listen to "inspiration" relevant to the
+                            program's themes, and complete short reflections.
+                        </p>
+                        <p>
+                            Participants will be assigned to <strong class="text-sams-green-dark">self-organizing squads</strong>,
+                            and members are encouraged to meet to discuss themes, answer questions, and support one
+                            another's growth prior to the program.
+                        </p>
+                        <p>
+                            Squads will also work together during the program and following the program for a
+                            <a href="#capstone" class="text-sams-blue hover:text-sams-blue-dark underline">capstone project</a>.
+                        </p>
+                    </div>
+
+                    <!-- Right: Key Stats -->
+                    <div class="space-y-4">
+                        <div class="card-hover bg-white rounded-xl p-6 shadow-sm border border-sams-gray-100">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-sams-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-white text-2xl font-bold">3</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sams-blue-darker text-lg">Days In-Person</p>
+                                    <p class="text-sams-gray-600 text-sm">Intensive workshop format</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-hover bg-white rounded-xl p-6 shadow-sm border border-sams-gray-100">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-sams-green rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-white text-2xl font-bold">12</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sams-blue-darker text-lg">Leadership Themes</p>
+                                    <p class="text-sams-gray-600 text-sm">Comprehensive development</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-hover bg-white rounded-xl p-6 shadow-sm border border-sams-gray-100">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-sams-blue-dark rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-white text-xl font-bold">19</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sams-blue-darker text-lg">Associates Selected</p>
+                                    <p class="text-sams-gray-600 text-sm">Exclusive cohort</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule & Logistics -->
+    <section id="schedule" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-1 h-12 bg-sams-green rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-sams-blue-darker">Schedule & Logistics</h2>
+                </div>
+
+                <div class="bg-gradient-to-br from-sams-blue-darker to-sams-blue rounded-2xl p-8 md:p-12 text-white shadow-xl">
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <span class="text-lg font-semibold">8:30am – 5pm @ Clubhouse</span>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 mb-10">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10">
+                            <p class="text-sams-green font-bold text-sm uppercase tracking-wider mb-2">Day 1</p>
+                            <p class="text-2xl font-bold">Tuesday</p>
+                            <p class="text-white/70">March 31</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10">
+                            <p class="text-sams-green font-bold text-sm uppercase tracking-wider mb-2">Day 2</p>
+                            <p class="text-2xl font-bold">Wednesday</p>
+                            <p class="text-white/70">April 1</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10">
+                            <p class="text-sams-green font-bold text-sm uppercase tracking-wider mb-2">Day 3</p>
+                            <p class="text-2xl font-bold">Thursday</p>
+                            <p class="text-white/70">April 2</p>
+                        </div>
+                    </div>
+
+                    <!-- Happy Hour -->
+                    <div class="bg-sams-green/20 backdrop-blur-sm rounded-xl p-6 border border-sams-green/30 flex items-center gap-4">
+                        <span class="text-4xl" role="img" aria-label="Celebration">🎉</span>
+                        <div>
+                            <p class="font-bold text-lg">Happy Hour & Celebration</p>
+                            <p class="text-white/80">Thursday, April 2 @ 5:30pm — Details TBA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capstone Project -->
+    <section id="capstone" class="py-20 bg-sams-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-1 h-12 bg-sams-blue rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-sams-blue-darker">Capstone Project</h2>
+                </div>
+
+                <p class="text-lg text-sams-gray-600 mb-8 leading-relaxed">
+                    Following the in-person workshop, in your squads, brainstorm 3-5 topics that you believe are
+                    either the <strong class="text-sams-blue">biggest opportunities or challenges</strong> for Marketing at Sam's Club.
+                </p>
+
+                <p class="text-lg text-sams-gray-600 mb-10 leading-relaxed">
+                    Pick the one topic that, if addressed or supported, would have the biggest positive impact to your
+                    team and culture, your ability to deliver value for members, your partner relationships, the quality
+                    of your work, and the business results you drive.
+                </p>
+
+                <!-- Steps -->
+                <div class="space-y-6 mb-10">
+                    <h3 class="text-2xl font-bold text-sams-blue-dark">Develop a ~5-minute pitch using Rocket Fuel leadership themes that:</h3>
+
+                    <div class="space-y-4">
+                        <div class="card-hover flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm border border-sams-gray-100">
+                            <div class="w-10 h-10 bg-sams-blue rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sams-blue-darker">Define & Quantify</p>
+                                <p class="text-sams-gray-600">Clearly defines and quantifies the opportunity or challenge.</p>
+                            </div>
+                        </div>
+                        <div class="card-hover flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm border border-sams-gray-100">
+                            <div class="w-10 h-10 bg-sams-green rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sams-blue-darker">Outline Your Plan</p>
+                                <p class="text-sams-gray-600">Outlines your plan to address the opportunity and challenge.</p>
+                            </div>
+                        </div>
+                        <div class="card-hover flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm border border-sams-gray-100">
+                            <div class="w-10 h-10 bg-sams-blue-dark rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sams-blue-darker">Resources Needed</p>
+                                <p class="text-sams-gray-600">Outlines the realistic resources needed to implement your plan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shark Tank -->
+                <div class="bg-gradient-to-r from-sams-blue-darker to-sams-blue-dark rounded-2xl p-8 text-white shadow-xl">
+                    <div class="flex items-start gap-4">
+                        <span class="text-5xl" role="img" aria-label="Shark">🦈</span>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Shark Tank-Style Pitch</h3>
+                            <p class="text-white/90 leading-relaxed">
+                                In April or May, you'll pitch Marketing SteerCo, <strong>Shark Tank-style</strong>,
+                                where Practice Leads are the Sharks, who can decide whether to sponsor your idea —
+                                and if multiple Practice Leads opt to sponsor, your squad picks the one you want!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class of Spring 2026 -->
+    <section id="class" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="flex items-center justify-center gap-3 mb-8">
+                    <div class="w-1 h-12 bg-sams-green rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-sams-blue-darker">Congratulations, Class of Spring 2026! 🎓</h2>
+                </div>
+
+                <div class="bg-gradient-to-br from-sams-gray-50 to-white rounded-2xl p-8 md:p-12 border border-sams-gray-100 shadow-sm">
+                    <img src="pictures.png" alt="Rocket Fuel Spring 2026 Class Photo" loading="lazy" class="rounded-xl shadow-md w-full mb-6">
+                    <p class="text-sams-gray-600 text-lg leading-relaxed">
+                        The selected associates represent some of the best and brightest in Sam's Club Marketing.
+                        Together, they'll shape the future of member-led growth and innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Details / PDF -->
+    <section class="py-16 bg-sams-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-sams-blue-darker mb-4">Program Details</h2>
+                <p class="text-sams-gray-600 mb-8">Download the full program overview for complete details.</p>
+                <a href="Sam-s-Club---Rocket-Fuel---Spring-2026---Program-Overview.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                         type="application/pdf"
+                         aria-label="Download Program Overview PDF (opens in a new tab)"
+                   class="inline-flex items-center gap-3 bg-sams-blue hover:bg-sams-blue-dark text-white font-semibold px-8 py-4 rounded-xl transition-colors shadow-lg text-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Download Program Overview (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sams-blue-darker text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="SC_Logo_Symbol_2384C_RGB.png" alt="Sam's Club logo" class="h-10 w-10 object-contain bg-white rounded p-1">
+                    <div>
+                        <p class="font-bold text-lg">Rocket Fuel @ Sam's Club</p>
+                        <p class="text-white/60 text-sm">Marketing Leadership Development</p>
+                    </div>
+                </div>
+                <div class="text-white/50 text-sm text-center md:text-right">
+                    <p>Sam's Club &bull; Spring 2026</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
